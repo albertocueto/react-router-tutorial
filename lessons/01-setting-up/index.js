@@ -1,19 +1,24 @@
 import React from 'react'
 import { render } from 'react-dom'
 import App from './modules/App'
-import { Router, Route, hashHistory } from 'react-router'
+import { Router, Route, browserHistory, IndexRoute } from 'react-router'
 // insert into index.js
 import About from './modules/About'
 import Repos from './modules/Repos'
 import Repo from './modules/Repo'
+import Home from './modules/Home'
 
 //render(<App/>, document.getElementById('app'))
 render((
-  <Router history={hashHistory}>
-    <Route path="/" component={App}>
+  <Router history={browserHistory}>
+    <Route path="/" component={App} >
+      {/* add it here, as a child of `/` */}
+      <IndexRoute component={Home}/>
       {/* Make them children of app */}
-      <Route path="/repos" component={Repos}/>
-      <Route path="/repos/:userName/:repoName" component={Repo}/>
+      <Route path="/repos" component={Repos}>
+        <Route path="/repos/:userName/:repoName" component={Repo}/>
+      </Route>
+
       <Route path="/about" component={About}/>
     </Route>
   </Router>

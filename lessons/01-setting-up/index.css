@@ -1,3 +1,7 @@
-.active {
+.active, .active:focus {
   color: green;
+}
+
+.active-sub, .active-sub:focus {
+  color: orange;
 }
